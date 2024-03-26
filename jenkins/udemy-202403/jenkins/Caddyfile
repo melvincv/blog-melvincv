@@ -1,0 +1,7 @@
+{
+    email "xxxxxx@example.com"
+}
+
+jenkins.aws.melvincv.com {
+	reverse_proxy localhost:8080
+}

@@ -4,6 +4,7 @@
 USERNAME="ubuntu"
 # Let's Encrypt Email ID
 EMAIL="xxxxxx@example.com"
+DOMAIN_NAME="sonar.aws.melvincv.com"
 
 # Check if run as root
 if [ "$EUID" -ne 0 ]; then
@@ -58,7 +59,7 @@ tee /etc/caddy/Caddyfile <<EOF
     email "${EMAIL}"
 }
 
-sonar.aws.melvincv.com {
+${DOMAIN_NAME} {
 	reverse_proxy localhost:9000
 }
 EOF

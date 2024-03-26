@@ -4,6 +4,7 @@
 ### Variables ###
 # Set your email for Let's Encrypt notifications
 EMAIL="xxxxxx@example.com"
+DOMAIN_NAME="jenkins.aws.melvincv.com"
 # Set Maven version and download URL
 JAVA_VERSION=17
 MAVEN_VERSION=3.9.6
@@ -62,7 +63,7 @@ sudo tee /etc/caddy/Caddyfile <<EOF
     email "${EMAIL}"
 }
 
-jenkins.aws.melvincv.com {
+${DOMAIN_NAME} {
 	reverse_proxy localhost:8080
 }
 EOF

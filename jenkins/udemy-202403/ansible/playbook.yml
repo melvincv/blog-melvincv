@@ -1,14 +1,37 @@
+# code: language=ansible
 ---
 - name: deploy to CD server
   hosts: web
   become: true
+  vars:
+    DOCKER_REGISTRY: "221968583774.dkr.ecr.ap-northeast-1.amazonaws.com"
+    DOCKER_IMAGE: "springbootapp"
   tasks:
+    - name: Install python3-docker
+      apt:
+        name: python3-docker
+        state: present
+
   # AWS ECR Actions
     - name: Establish login to ECR
-      shell: aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 221968583774.dkr.ecr.ap-northeast-1.amazonaws.com
+      shell: aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin "{{ DOCKER_REGISTRY }}"
+      register: ecr_login_output
+
+    - name: Check login status (optional)
+      debug:
+        msg: "ECR login output: {{ ecr_login_output.stdout }}"
+      
     - name: Pull image from ECR
-      shell: docker pull 221968583774.dkr.ecr.ap-northeast-1.amazonaws.com/springbootapp:"{{ BUILD_NUMBER }}"
-    - name: Stop and remove container
-      shell: docker stop web && docker rm web
-    - name: Run image
-      shell: docker run --name web -p 8080:8080 -d 221968583774.dkr.ecr.ap-northeast-1.amazonaws.com/springbootapp:"{{ BUILD_NUMBER }}"
+      docker_image:
+        name: "{{ DOCKER_REGISTRY }}/{{ DOCKER_IMAGE }}:{{ BUILD_NUMBER }}"
+        source: pull
+
+    - name: Run container
+      docker_container:
+        name: web
+        image: "{{ DOCKER_REGISTRY }}/{{ DOCKER_IMAGE }}:{{ BUILD_NUMBER }}"
+        ports:
+          - "8080:8080"
+        state: started
+        recreate: yes
+        restart_policy: unless-stopped

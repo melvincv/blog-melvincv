@@ -3,7 +3,7 @@
 # Docker User
 USERNAME="ubuntu"
 # Let's Encrypt Email ID
-EMAIL="xxxxxx@example.com"
+EMAIL="xxxxxx@live.com"
 DOMAIN_NAME="sonar.aws.melvincv.com"
 
 # Check if run as root

@@ -3,12 +3,12 @@
 
 ### Variables ###
 # Set your email for Let's Encrypt notifications
-EMAIL="xxxxxx@example.com"
+EMAIL="xxxxxx@live.com"
 DOMAIN_NAME="jenkins.aws.melvincv.com"
 # Set Maven version and download URL
-JAVA_VERSION=17
-MAVEN_VERSION=3.9.6
-MAVEN_DOWNLOAD_URL=https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+JAVA_VERSION="17"
+MAVEN_VERSION="3.9.6"
+MAVEN_DOWNLOAD_URL="https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz"
 
 # Set Maven installation directory
 MAVEN_INSTALL_DIR=/opt/apache-maven

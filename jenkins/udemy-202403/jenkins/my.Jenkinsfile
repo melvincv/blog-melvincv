@@ -66,10 +66,10 @@ pipeline {
     }
     post {
         success {
-            mail bcc: '', body: 'Pipeline success', cc: '', from: 'xxxxxx@example.com', replyTo: '', subject: 'Pipeline success', to: 'xxxxxx@example.com'
+            mail bcc: '', body: 'Pipeline success', cc: '', from: 'xxxxxx@live.com', replyTo: '', subject: 'Pipeline success', to: 'xxxxxx@live.com'
         }
         failure {  
-            mail bcc: '', body: 'Pipeline failed', cc: '', from: 'xxxxxx@example.com', replyTo: '', subject: 'Pipeline failed', to: 'xxxxxx@example.com'
+            mail bcc: '', body: 'Pipeline failed', cc: '', from: 'xxxxxx@live.com', replyTo: '', subject: 'Pipeline failed', to: 'xxxxxx@live.com'
         } 
     }
 }
